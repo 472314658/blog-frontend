@@ -5,17 +5,19 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: '德玛西亚',
-  siteDescription:'在那里哟',
-  plugins: [],
-  pathPrefix:'gridsome',
-  trailingSlash:false,
-  templates:{
-    Post:[
-      {
-        path:'/posts/:id',
-        component:'./src/templates/Post.vue'
-      }
-    ]
-  }
+    siteName: 'Gridsome',
+    plugins: [
+        {
+            use: '@gridsome/source-filesystem',
+            options: {
+                typeName: 'BlogPost',
+                path: './content/blog/**/*.md',
+            }
+        }
+    ],
+    transformers: {
+        remark: {
+            // global remark options
+        }
+    }
 }
