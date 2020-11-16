@@ -13,11 +13,34 @@ module.exports = {
                 typeName: 'BlogPost',
                 path: './content/blog/**/*.md',
             }
-        }
+        },
+        {
+            use: '@gridsome/source-strapi',
+            options: {
+              apiURL: 'http://localhost:1337',
+              queryLimit: 1000, // Defaults to 100
+              contentTypes: ['posts'],
+            //   singleTypes: ['impressum'],
+              // Possibility to login with a Strapi user,
+              // when content types are not publicly available (optional).
+            //   loginData: {
+            //     identifier: 'crfeng',
+            //     password: '11111111'
+            //   }
+            }
+          }
     ],
     transformers: {
         remark: {
             // global remark options
         }
+    },
+    templates:{
+        StrapiPosts:[
+            {
+                path:'/post/:id',
+                component: './src/templates/Post.vue'
+            }
+        ]
     }
 }
