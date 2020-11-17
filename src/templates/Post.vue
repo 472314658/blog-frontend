@@ -1,7 +1,10 @@
 <template>
     <Layout>
         <!-- Page Header -->
-        <header class="masthead" style="background-image: url('/img/post-bg.jpg')">
+        <header
+            class="masthead"
+            style="background-image: url('/img/post-bg.jpg')"
+        >
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
@@ -10,8 +13,8 @@
                             <h1>{{$page.post.title}}</h1>
                             <!-- <h2 class="subheading">Problems look mighty small from 150 miles up</h2> -->
                             <span class="meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on {{$page.post.published_at}}</span>
+                                <a href="#">Start Bootstrap</a>
+                                on {{$page.post.published_at}}</span>
                         </div>
                     </div>
                 </div>
@@ -22,8 +25,7 @@
         <article>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto">
-                        {{$page.post.content}}
+                    <div class="col-lg-8 col-md-10 mx-auto" v-html="mdToHtml($page.post.content)">
                         <!-- <p>Never in all their history have men been able truly to conceive of the world as one: a single
                             sphere, a globe, having the qualities of a globe, a round earth in which all the directions
                             eventually meet, in which there is no center because every point, or none, is center — an
@@ -108,11 +110,18 @@ query($id:ID!){
 }
 </page-query>
 <script>
-    export default {
-        name: "PostPage"
+import MarkdownIt from "markdown-it";
+const md = new MarkdownIt();
+
+export default {
+  name: "PostPage",
+  methods: {
+    mdToHtml(markdown) {
+      return md.render(markdown);
     }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

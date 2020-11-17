@@ -19,8 +19,8 @@ module.exports = {
             options: {
               apiURL: 'http://localhost:1337',
               queryLimit: 1000, // Defaults to 100
-              contentTypes: ['posts'],
-            //   singleTypes: ['impressum'],
+              contentTypes: ['posts','tag'],
+              singleTypes: ['general'],
               // Possibility to login with a Strapi user,
               // when content types are not publicly available (optional).
             //   loginData: {
@@ -40,6 +40,12 @@ module.exports = {
             {
                 path:'/post/:id',
                 component: './src/templates/Post.vue'
+            }
+        ],
+        StrapiTag:[
+            {
+                path:'/tag/:id',
+                component: './src/templates/Tag.vue'
             }
         ]
     }

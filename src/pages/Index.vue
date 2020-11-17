@@ -3,15 +3,15 @@
         <!-- Page Header -->
         <header
             class="masthead"
-            style="background-image: url('/img/home-bg.jpg')"
+            :style="'background-image: url(http://localhost:1337'+general.cover.url+')'"
         >
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-10 mx-auto">
                         <div class="site-heading">
-                            <h1>Clean Blog</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                            <h1>{{general.title}}</h1>
+                            <span class="subheading">{{general.sub}}</span>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                 v-for="tag in edge.node.tags"
                                 :key="tag.id"
                             >
-                                <a href="">{{tag.title}}</a>&nbsp;&nbsp;
+                                <g-link :to="'/tag/'+tag.title">{{tag.title}}</g-link>&nbsp;&nbsp;
                             </span>
                         </p>
                         <hr>
@@ -120,6 +120,19 @@ query($page :Int){
       }
     }
   }
+  
+  general :allStrapiGeneral{
+    edges{
+      node{
+        id
+        title
+        sub
+        cover{
+          url
+        }
+      }
+    }
+  }
 }
 </page-query>
 <script>
@@ -131,6 +144,11 @@ export default {
   },
   metaInfo: {
     title: "Hello, world!"
+  },
+  computed:{
+      general(){
+          return this.$page.general.edges[0].node
+      }
   }
 };
 </script>
