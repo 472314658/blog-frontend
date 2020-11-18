@@ -3,7 +3,7 @@
         <!-- Page Header -->
         <header
             class="masthead"
-            :style="'background-image: url(http://localhost:1337'+general.cover.url+')'"
+            :style="'background-image: url('+GRIDSOME_API_URL+general.cover.url+')'"
         >
             <div class="overlay"></div>
             <div class="container">
@@ -43,7 +43,7 @@
                                 v-for="tag in edge.node.tags"
                                 :key="tag.id"
                             >
-                                <g-link :to="'/tag/'+tag.title">{{tag.title}}</g-link>&nbsp;&nbsp;
+                                <g-link :to="'/tag/'+tag.id">{{tag.title}}</g-link>&nbsp;&nbsp;
                             </span>
                         </p>
                         <hr>

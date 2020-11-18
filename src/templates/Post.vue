@@ -1,6 +1,7 @@
 <template>
     <Layout>
         <!-- Page Header -->
+            <!-- :style="'background-image: url('+GRIDSOME_API_URL+$page.post.cover.url+')'" -->
         <header
             class="masthead"
             style="background-image: url('/img/post-bg.jpg')"
